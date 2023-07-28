@@ -3,10 +3,13 @@ const dotenv = require('dotenv');
 
 dotenv.config({ path: './config.env' });
 
+
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
+
+mongoose.set("strictQuery", false);
 
 mongoose
   .connect(DB, {})
@@ -14,7 +17,7 @@ mongoose
     console.log('DB connection successfull');
   })
   .catch((err) => {
-    console.log('Error happened');
+    console.log('Error happened',err);
   });
 ()=>{}
 const app = require('./app');
