@@ -11,7 +11,14 @@ const DB = process.env.DATABASE.replace(
 
 mongoose.set("strictQuery", false);
 
-mongoose
+
+
+const app = require('./app');
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`App is running on port ${port}`);
+  mongoose
   .connect(DB, {})
   .then((conn) => {
     console.log('DB connection successfull');
@@ -19,10 +26,4 @@ mongoose
   .catch((err) => {
     console.log('Error happened',err);
   });
-()=>{}
-const app = require('./app');
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`App is running on port ${port}`);
 });
